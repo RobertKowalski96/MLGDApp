@@ -1,4 +1,4 @@
-function [grammar] = generateMaxGrammar(terminalsFile, nonTerminalsFile)
+function [grammar] = generateCoveringGrammar(terminalsFile, nonTerminalsFile)
 
 fileID = fopen(terminalsFile);
 terminals=textscan(fileID,'%s');

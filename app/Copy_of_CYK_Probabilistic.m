@@ -1,4 +1,4 @@
-function [prob, P] = CYK_Probabilistic(grammar, input, rulesProb)
+function [prob, P] = Copy_of_CYK_Probabilistic(grammar, input, rulesProb)
 
 
 input = strsplit(input, ' ');
@@ -23,18 +23,11 @@ n=length(input);
 for i=2:n   
     for j=1:n-i+1
         for k=1:i-1
-            %for t1=1:length(grammar.symbols)
-                %for t2=1:length(grammar.symbols)
-                
-                for r=1:length(grammar.rules)
-                    t=strsplit(grammar.rules{r,2}, ' ');
-                    if length(t)==2
-                    t1 = ismember(grammar.symbols, t{1});
-                    t2 = ismember(grammar.symbols, t{2});
-
+            for t1=1:length(grammar.symbols)
+                for t2=1:length(grammar.symbols)
                     if P(k,j,t1) && P(i-k,j+k,t2)
                         projection =strjoin([grammar.symbols(t1),grammar.symbols(t2)]);
-                       %a for r=1:length(grammar.rules)
+                        for r=1:length(grammar.rules)
                             if strcmp(projection,grammar.rules(r,2))
                                 %for jj=1:length(grammar.symbols)
                                  %   if strcmp(grammar.rules(r,1),grammar.symbols(jj))
@@ -45,12 +38,11 @@ for i=2:n
                                         end
                                     %end
                                 %end  
-                          %  end
                             end
+                        end
                     end
-                    end
-                %end
-            %end
+                end
+            end
         end
     end
 end

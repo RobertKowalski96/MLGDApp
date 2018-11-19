@@ -16,7 +16,7 @@ for i=1:length(A)
 
 grammar.rules=[A,B];
 
-grammar.symbols=vertcat(A,B);
+grammar.symbols=A;
 grammar.symbols=unique(grammar.symbols,'stable');
 
 end
