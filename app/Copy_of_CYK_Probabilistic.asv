@@ -7,11 +7,11 @@ input = strsplit(input, ' ');
 P=zeros(length(input),length(input),length(grammar.nonTerminals));
 %First
 for i=1:length(input)  
-    for r=1:length(grammar.rules.Lex)
-        if strcmp(input(i),grammar.rules.Lex{r,2})
+    for r=1:length(grammar.rulesLex)
+        if strcmp(input(i),grammar.rulesLex{r,2})
             %for jj=1:length(grammar.nonTerminals)
                 %if strcmp(grammar.rules(r,1),grammar.nonTerminals(jj))
-                P(1,i,grammar.rules.Lex{r,1})=rulesProb(r);
+                P(1,i,grammar.rulesLex{r,1})=rulesProb(r);
                % end
            % end
         end
@@ -26,14 +26,14 @@ for i=2:n
                 for t2=1:length(grammar.nonTerminals)
                     if P(k,j,t1) && P(i-k,j+k,t2)
                         %projection =strjoin([grammar.nonTerminals(t1),grammar.nonTerminals(t2)]);
-                        for r=1:length(grammar.rules.NonLex)
-                            if t1==grammar.rules.NonLex{r,2} && t2==grammar.rules.NonLex{r,3}
+                        for r=1:length(grammar.rulesNonLex)
+                            if t1==grammar.rulesNonLex{r,2}
                             %if strcmp(projection,grammar.rules(r,2))
                                 %for jj=1:length(grammar.nonTerminals)
                                  %   if strcmp(grammar.rules(r,1),grammar.nonTerminals(jj))
                                         prob_splitting = rulesProb(r)*P(k,j,t1)*P(i-k,j+k,t2);
                                         if P(k,j,t1)>0 && P(i-k,j+k,t2)>0
-                                            P(i,j,grammar.rules.NonLex{r,1}) = P(i,j,grammar.rules.NonLex{r,1}) + prob_splitting;
+                                            P(i,j,grammar.rulesNonLex{r,1}) = P(i,j,grammar.rulesNonLex{r,1}) + prob_splitting;
                                         end
                                     %end
                                 %end  

@@ -1,5 +1,7 @@
 function [population] = initRulesProb(grammar,numberOfSolutions)
 
+%NOT ACTUALL, replaced with ScaleRulesProb
+
 population = zeros(numberOfSolutions,length(grammar.rules));
 
 for n=1:numberOfSolutions
