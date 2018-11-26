@@ -37,7 +37,7 @@ for i=1:length(grammar.rules.Lex)
 end
 
 %find connections (same nonTerminal on the left side)
-allRulesLeft=vertcat(grammar.rules.NonLex{:,1},grammar.rules.Lex{:,1}); %Only left side of every rule (first all nonlexicals and then lexicals) 
+allRulesLeft=vertcat(grammar.rules.NonLex{:,1},grammar.rules.Lex{:,1}); %Only left side of every rule (first all nonlexicals and then lexicals)
 
 grammar.rules.connections={};
 for i=1:length(grammar.nonTerminals)

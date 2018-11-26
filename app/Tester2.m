@@ -1,6 +1,6 @@
 clc, clear all;
 
-[grammar]=loadGrammar('TEST_Grammar2Covering.txt');
+[grammar]=loadGrammar('TEST_Grammar2Min.txt');
 
 %[grammar] = initRulesProb(grammar);
 
@@ -11,7 +11,7 @@ tic
 [rulesProb] = scaleRulesProb (grammar,rulesProb);
 toc
 
-input = 'a a a a a a a a a a b b b b b b b b b b c';
+input = 'a a a b b b c c c';
 tic
 [prob, P] = CYK_Probabilistic(grammar, input, rulesProb);
 toc

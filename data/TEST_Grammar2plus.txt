@@ -1,9 +1,14 @@
 S	T U
 S	T C
+S	X X
+T	X X
 T	A V
 T	A B
+V	X X
 V	T B
+X	A A
 A	a
+A	X X
 B	b
 U	c
 U	U C

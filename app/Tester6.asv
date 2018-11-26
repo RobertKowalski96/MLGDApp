@@ -1,1 +1,0 @@
-[grammar] = loadGrammar('TEST_Grammar2Min.txt')
