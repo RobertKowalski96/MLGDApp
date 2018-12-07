@@ -2,15 +2,15 @@ clc; clear all;
 tic
 %parameters:
 t=1; %cycles
-n=50; %osobniki
-tk=5000; %end cycle number
+n=40; %osobniki
+tk=1000; %end cycle number
 mutationProb=0.005;
-mutationScale=0.5;
+mutationScale=0.9;
 reproductionProb=0.4;
 
 %initialization
 [sentences] = loadSentences('sentences.txt');
-[grammar] = loadGrammar('TEST_Grammar2Covering.txt');
+[grammar] = loadGrammar('TEST_Grammar2Plus2.txt');
 %[population] = initRulesProb(grammar,n);
 [population] = initPopulation (grammar, n);
 
@@ -33,7 +33,7 @@ while t<tk
     yMin(t)=min(points2);
     yMax(t)=max(points2);
     yMean(t)=mean(points2);
-    t=t+1;
+    t=t+1
 end
 toc
 x=linspace(1,tk-1,tk-1);
