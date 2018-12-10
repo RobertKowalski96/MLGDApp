@@ -1,0 +1,37 @@
+S	T U
+S	T C
+S	X X
+S	Z Z
+S	Y Y
+T	X Z
+T	Z X
+T	Y Z
+T	X X
+T	A V
+T	A B
+T	Z Z
+T	Y Y
+V	Z Z
+V	Z X
+V	X Z
+V	Y X
+V	Y Y
+V	X X
+V	T B
+Y	Y Y
+Z	Z Z
+X	A A
+A	a
+A	X X
+B	b
+U	c
+U	U C
+C	c
+B	V C
+B	V T
+C	B T
+U	a
+T	b
+A	c
+A	A C
+U	c

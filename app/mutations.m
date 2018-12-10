@@ -13,7 +13,11 @@ for i=1:n
                population(i,j)=population(i,j)+z;
 
             else
-                population(i,j)=population(i,j)+z;
+                if population(i,j)>z
+                population(i,j)=population(i,j)-z;
+                else
+                    population(i,j)=0;
+                end
             end
         end
         

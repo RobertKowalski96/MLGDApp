@@ -21,9 +21,7 @@ for i=2:n
             for r=1:length(grammar.rules.NonLex)
                 if P(k,j,grammar.rules.NonLex{r,2}) && P(i-k,j+k,grammar.rules.NonLex{r,3})
                     prob_splitting = rulesProb(r)*P(k,j,grammar.rules.NonLex{r,2})*P(i-k,j+k,grammar.rules.NonLex{r,3});
-                    if P(k,j,grammar.rules.NonLex{r,2})>0 && P(i-k,j+k,grammar.rules.NonLex{r,3})>0
                         P(i,j,grammar.rules.NonLex{r,1}) = P(i,j,grammar.rules.NonLex{r,1}) + prob_splitting;
-                    end
                 end
             end
         end
