@@ -8,8 +8,6 @@ for i=1:n
     end
 end
 
-for i=1:n
-    population(i,:)=scaleRulesProb(grammar,population(i,:));
-end
+[population] = scaleRulesProb (grammar,population);
 
 end

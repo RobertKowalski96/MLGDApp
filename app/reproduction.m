@@ -1,12 +1,18 @@
 function [populationT1] = reproduction(population,points, reproductionProb)
 
+pointsScaled = zeros(1,length(points));
+bestResult=max(points);
+for i=1:length(points)
+    pointsScaled(i)=bestResult/points(i);
+end
+
 [n,m] = size(population);
 populationT = zeros(n,m);
 
 %Creating populationT
 
-pointsSum = sum(points);
-points2 = points/pointsSum;
+pointsSum = sum(pointsScaled);
+points2 = pointsScaled/pointsSum;
 points3 = cumsum(points2);
 
 for i = 1:n/2
@@ -15,10 +21,11 @@ for i = 1:n/2
     populationT(i,:) = population(found,:);
 end
 
-
-%Reproduction
+%Crossing Over
+[n,m] = size(population);
+populationT1 = zeros(n/2, m);
 for i=1:n/4
-   
+    
     x=rand;
     if x<=reproductionProb
         

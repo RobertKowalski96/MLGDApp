@@ -1,6 +1,6 @@
-function [points,points2,population, badMutations] = qualityCheck (population,populationPreMutations, grammar, sentences, badMutations)
+function [points,population, lethalMutations] = qualityCheck (population,populationPreMutations, grammar, sentences, lethalMutations)
 
-[n,m] =size(population);
+[n,~] =size(population);
 
 score = zeros(length(sentences),n);
 
@@ -11,7 +11,7 @@ while i <= n
         [prob] = CYK_Probabilistic(grammar, sentences{j}, population(i,:));
         if prob == 0
             population(i,:) = populationPreMutations(i,:);
-            badMutations = badMutations + 1;
+            lethalMutations = lethalMutations + 1;
             i=i-1;
             break
         else
@@ -22,11 +22,5 @@ while i <= n
     i=i+1;
 end
 
-points2=sum(score);
-points=sum(score);
-bestResult=max(points);
-%points=points/bestResult;
-
-for i=1:length(points)
-    points(i)=bestResult/points(i);
+points=sum(score)/length(sentences);
 end
