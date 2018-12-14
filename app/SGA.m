@@ -1,10 +1,23 @@
 %argumenty wyjœciowe:
+% grammar - gramatyka (nieterminale, regu³y strukturalne i leksykalne wraz
+% z wzajemnymi powi¹zaniami)
+%
 % distanceParam - zawiera parametry (max, min, mean, med, std) odleg³oœci (euklidesowej)
 %  poszczególnych osobników wzglêdem siebie (pokazuje to ró¿norodnoœæ populacji)
 %
-% yParam - zawiera parametry (max, min, mean, med, std) j
+% yParam - zawiera parametry (max, min, mean, med, std) ze œredniego
+% dopasowania wszystkich sekwencji z próbki ucz¹cej dla ka¿dego osobnika z
+% populacji
 %
-
+% hyperparameters - parametry wejœciowe (liczba osobników, liczba cykli,
+% prawdopodobieñstwa mutacji i crossing over, maksymalna skala mutacji)
+%
+% populationHistory - zrzuty populacji robione co 100 przebiegów programu
+% (dodatkowo pierwsza populacjia)
+%
+% lethalMutations - liczba mutacji powoduj¹cych, ¿e osobnik nie jest w stanie zakwalifikowaæ jednego ze sprawdzanych zdañ do testowanej gramatyki(p(x)=0)
+%
+% time - czas uczenia
 function [grammar, distanceParam, yParam, hyperparameters, populationHistory, lethalMutations, time] = SGA (hyperparameters, sentencesFile, grammarFile)
 tic
 
@@ -13,8 +26,7 @@ tic
 [grammar] = loadGrammar(grammarFile);
 [population] = initPopulation (grammar, hyperparameters.n);
 [yParam, distanceParam, populationHistory] = preallocate (grammar,hyperparameters); %subfunction preallocate
-lethalMutations=0; %mutacje powoduj¹ce, ¿e osobnik nie jest w stanie zakwalifikowaæ jednego ze sprawdzanych zdañ do testowanej gramatyki(p(x)=0)
-
+lethalMutations=0;
 %zapisanie pierwszej populacji do archiwum populacji
 populationHistory(:,:,1)=population; 
 
