@@ -1,3 +1,162 @@
+A	a
+A	b
+A	c
+A	S S
+A	S T
+A	S V
+A	S U
+A	S A
+A	S B
+A	S C
+A	T S
+A	T T
+A	T V
+A	T U
+A	T A
+A	T B
+A	T C
+A	V S
+A	V T
+A	V V
+A	V U
+A	V A
+A	V B
+A	V C
+A	U S
+A	U T
+A	U V
+A	U U
+A	U A
+A	U B
+A	U C
+A	A S
+A	A T
+A	A V
+A	A U
+A	A A
+A	A B
+A	A C
+A	B S
+A	B T
+A	B V
+A	B U
+A	B A
+A	B B
+A	B C
+A	C S
+A	C T
+A	C V
+A	C U
+A	C A
+A	C B
+A	C C
+B	a
+B	b
+B	c
+B	S S
+B	S T
+B	S V
+B	S U
+B	S A
+B	S B
+B	S C
+B	T S
+B	T T
+B	T V
+B	T U
+B	T A
+B	T B
+B	T C
+B	V S
+B	V T
+B	V V
+B	V U
+B	V A
+B	V B
+B	V C
+B	U S
+B	U T
+B	U V
+B	U U
+B	U A
+B	U B
+B	U C
+B	A S
+B	A T
+B	A V
+B	A U
+B	A A
+B	A B
+B	A C
+B	B S
+B	B T
+B	B V
+B	B U
+B	B A
+B	B B
+B	B C
+B	C S
+B	C T
+B	C V
+B	C U
+B	C A
+B	C B
+B	C C
+C	a
+C	b
+C	c
+C	S S
+C	S T
+C	S V
+C	S U
+C	S A
+C	S B
+C	S C
+C	T S
+C	T T
+C	T V
+C	T U
+C	T A
+C	T B
+C	T C
+C	V S
+C	V T
+C	V V
+C	V U
+C	V A
+C	V B
+C	V C
+C	U S
+C	U T
+C	U V
+C	U U
+C	U A
+C	U B
+C	U C
+C	A S
+C	A T
+C	A V
+C	A U
+C	A A
+C	A B
+C	A C
+C	B S
+C	B T
+C	B V
+C	B U
+C	B A
+C	B B
+C	B C
+C	C S
+C	C T
+C	C V
+C	C U
+C	C A
+C	C B
+C	C C
+S	a
+S	b
+S	c
 S	S S
 S	S T
 S	S V
@@ -47,6 +206,9 @@ S	C U
 S	C A
 S	C B
 S	C C
+T	a
+T	b
+T	c
 T	S S
 T	S T
 T	S V
@@ -96,6 +258,9 @@ T	C U
 T	C A
 T	C B
 T	C C
+U	a
+U	b
+U	c
 U	S S
 U	S T
 U	S V
@@ -145,6 +310,9 @@ U	C U
 U	C A
 U	C B
 U	C C
+V	a
+V	b
+V	c
 V	S S
 V	S T
 V	S V
@@ -194,12 +362,3 @@ V	C U
 V	C A
 V	C B
 V	C C
-A	a
-A	b
-A	c
-B	a
-B	b
-B	c
-C	a
-C	b
-C	c

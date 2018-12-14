@@ -1,7 +1,22 @@
 clc,clear all
 
-[grammar] = loadGrammar('TEST_Grammar2Min.txt');
 
-n=5;
+points = [0.75; 0.20; 0.05];
 
-[population] = initPopulation (grammar, n)
+suma=sum(points);
+
+points2=points/suma;
+
+points3=cumsum(points2);
+
+
+pop=[0; 0; 0];
+for i=1:10000
+    x=rand;
+    
+   found = find(points3>x, 1);
+   pop(found)=pop(found)+1;
+    
+end
+    
+

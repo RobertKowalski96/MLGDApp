@@ -1,8 +1,11 @@
-clc, clear all, close all;
 
-A=1;
-B=0.000;
+T1=[1,1,1,1,1];
+T2=[2,2,2,2,2];
+T3=[2,2,2,1,2];
 
-if B
-   A=2; 
-end
+T4=[T1;T2;T3];
+tic
+[distance] = calculateDistanceParam (population,t)
+
+
+toc

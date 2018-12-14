@@ -1,10 +1,8 @@
-S	T U
 S	T C
+S	S C
 T	A V
 T	A B
 V	T B
-U	C C
-U	U C
 A	a
 B	b
 C	c
