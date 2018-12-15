@@ -1,7 +1,4 @@
-function [prob, P] = CYK_Probabilistic(grammar, input, rulesProb)
-
-
-input = strsplit(input, ' ');
+function [prob] = CYK_Probabilistic(grammar, input, rulesProb)
 
 %Initialize
 P=zeros(length(input),length(input),length(grammar.nonTerminals));
@@ -26,7 +23,7 @@ for i=2:n
             end
         end
     end
-    
+end
     
     prob = P(n,1,1);
 end

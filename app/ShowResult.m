@@ -1,7 +1,7 @@
 %clc, clear all
 %close all
 %load('resultData3.mat');
-x=linspace(1,hyperparameters.tk,hyperparameters.tk);
+x=linspace(1,hyperparameters.tk+1,hyperparameters.tk+1);
 % figure
 % plot(x,yMin); title('min');
 % figure
@@ -17,6 +17,9 @@ legend('min','mean','max');
 
 figure
 plot(x, distanceParam.mean); title('mean');
+
+figure
+plot(linspace(1,length(accuracyParam.aucHistory),length(accuracyParam.aucHistory)),accuracyParam.aucHistory)
 
 % 
 % figure

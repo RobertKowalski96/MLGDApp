@@ -1,6 +1,16 @@
 function [sentences] = loadSentences(fileName)
 
-%Not known file format
-%Test data for toyGrammar1:
-sentences ={'a b c c'; 'a a b b c c'; 'a a a b b b c c'; 'a b c c c'; 'a b c c c c'; 'a b c'; 'a a b b c'; 'a a a b b b c'; 'a a a a b b b b c c'; 'a a a a b b b b c'};
+data=readtable(fileName);
+
+sentences={};
+data=table2array(data);
+
+for i=1:length(data)
+    
+    oneSentence=strsplit(data{i}, ' ');
+    oneSentence= oneSentence(3:end);
+    sentences{i}=strcat(oneSentence{1:end});
+    
+end
+
 end
