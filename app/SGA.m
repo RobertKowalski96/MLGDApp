@@ -18,25 +18,31 @@
 % lethalMutations - liczba mutacji powoduj¹cych, ¿e osobnik nie jest w stanie zakwalifikowaæ jednego ze sprawdzanych zdañ do testowanej gramatyki(p(x)=0)
 %
 % time - czas uczenia
-function [grammar, distanceParam, yParam, hyperparameters, populationHistory, lethalMutations, time, bestSolutionHistory, accuracyParam] = SGA (hyperparameters, teachingSentencesFile, grammarFile, positiveTestFile, negativeTestFile)
+function [grammar, distanceParam, yParam, hyperparameters, populationHistory, lethalMutations, time, bestSolutionHistory, accuracyParam, modelZero] = SGA (hyperparameters, teachingSentencesFile, grammarFile, positiveTestFile, negativeTestFile, modelZero)
 tic
 
 %initialization
 load('teachingSentences.mat');
 [grammar] = loadGrammar(grammarFile);
 [population] = initPopulation (grammar, hyperparameters.n);
-[yParam, distanceParam, populationHistory, bestSolutionHistory] = preallocate (grammar,hyperparameters); %subfunction preallocate
+[yParam, distanceParam, populationHistory, bestSolutionHistory, time] = preallocate (grammar,hyperparameters); %subfunction preallocate
 lethalMutations=0;
-%zapisanie pierwszej populacji do archiwum populacji
-populationHistory(:,:,1)=population;
+
 
 %ocena P0
 [points] = firstQualityCheck (population, grammar, teachingSentences);
 [distanceParam, yParam] = calculateAllParam (population,1, distanceParam, yParam, points);
 
+%zapisanie pierwszej populacji do archiwum populacji
+populationHistory(:,:,1)=population;
+%zapisanie najlepszego osobnika pierwszej populacji do archiwum najlepszych
+%osobników
+bestIndex = find(points==max(points), 1); %Indeks najlepszego osobnika
+bestSolutionHistory(:,1) = population(bestIndex,:);
+time(1)=toc;
 t=1; %cycles
 while t<=hyperparameters.tk
-    
+    tic
     %pierwsza czêœæ nowej populacji (T1) jest tworzona na podstawie
     %operacji genetycznych (krzy¿owanie, mutacje)
     [populationT1] = reproduction(population, points, hyperparameters.CrossingOverProb);
@@ -63,25 +69,27 @@ while t<=hyperparameters.tk
     end
   
     bestIndex = find(points==max(points), 1); %Indeks najlepszego osobnika
-    bestSolutionHistory(:,t) = population(bestIndex,:);
+    bestSolutionHistory(:,t+1) = population(bestIndex,:);
     
-    t=t+1;
+    time(t+1) = toc;
+    t=t+1
+    
 end
-time = toc;
 
-[accuracyParam] = testTeachingAccuracy (positiveTestFile, negativeTestFile, bestSolutionHistory, hyperparameters.tk, grammar);
+
+[accuracyParam, modelZero] = testTeachingAccuracy (positiveTestFile, negativeTestFile, bestSolutionHistory, hyperparameters.tk, grammar, modelZero);
 
 %subfunction saveResult
-saveResult(grammar, distanceParam, yParam, hyperparameters, populationHistory, lethalMutations, time, teachingSentencesFile, grammarFile, teachingSentences, bestSolutionHistory, accuracyParam);
+saveResult(grammar, distanceParam, yParam, hyperparameters, populationHistory, lethalMutations, time, teachingSentencesFile, grammarFile, teachingSentences, bestSolutionHistory, accuracyParam, modelZero);
 
 end
 
 
-function [yParam, distanceParam, populationHistory, bestSolutionHistory] = preallocate (grammar,hyperparameters)
+function [yParam, distanceParam, populationHistory, bestSolutionHistory, time] = preallocate (grammar,hyperparameters)
 tk=hyperparameters.tk;
 n=hyperparameters.n;
 
-
+time=zeros(tk+1,1);
 yParam.min=zeros(tk+1,1);
 yParam.max=zeros(tk+1,1);
 yParam.mean=zeros(tk+1,1);
@@ -97,7 +105,7 @@ bestSolutionHistory = zeros(length(grammar.rules.Lex)+length(grammar.rules.NonLe
 
 end
 
-function [] = saveResult(grammar, distanceParam, yParam, hyperparameters, populationHistory, lethalMutations, time, teachingSentencesFile, grammarFile, teachingSentences, bestSolutionHistory, accuracyParam)
+function [] = saveResult(grammar, distanceParam, yParam, hyperparameters, populationHistory, lethalMutations, time, teachingSentencesFile, grammarFile, teachingSentences, bestSolutionHistory, accuracyParam, modelZero)
 
 if exist('results', 'file') ~= 7 %sprawdzanie czy istniej¹ odpowiednie foldery, je¿eli nie to tworzenie ich
     mkdir('results');
@@ -112,12 +120,12 @@ saved=0;
 while ~saved
     filename=strcat('results/',grammarFile,'/n',mat2str(hyperparameters.n),'mp',mat2str(hyperparameters.mutationProb),'ms',mat2str(hyperparameters.mutationScale),'COp',mat2str(hyperparameters.CrossingOverProb),'tk',mat2str(hyperparameters.tk),'testNr',mat2str(tn),'.mat');
     if exist(filename, 'file') == 2
-        tn=tn+1
+        tn=tn+1;
     else
-        zapis=1
         save(filename,...
-            'grammar', 'distanceParam', 'yParam', 'hyperparameters', 'populationHistory', 'lethalMutations', 'time', 'teachingSentencesFile', 'grammarFile', 'teachingSentences', 'bestSolutionHistory', 'accuracyParam');
-        saved=1
+            'grammar', 'distanceParam', 'yParam', 'hyperparameters', 'populationHistory', 'lethalMutations', 'time', 'teachingSentencesFile', 'grammarFile', 'teachingSentences', 'bestSolutionHistory', 'accuracyParam', 'modelZero');
+        saved=1;
+        filename
     end
 end
 

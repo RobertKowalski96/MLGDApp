@@ -15,15 +15,29 @@ plot(x, yParam.mean);
 plot(x, yParam.max);
 legend('min','mean','max');
 
-figure
-plot(x, distanceParam.mean); title('mean');
+%figure
+%plot(x, distanceParam.mean); title('mean');
 
 figure
 plot(linspace(1,length(accuracyParam.aucHistory),length(accuracyParam.aucHistory)),accuracyParam.aucHistory)
+
+figure
+plot(linspace(1,length(accuracyParam.aucHistory),length(accuracyParam.aucHistory)),modelZero.aucHistory)
+
+figure
+plot(linspace(1,length(accuracyParam.aucHistory),length(accuracyParam.aucHistory)),modelZero.aucHistory2)
+
+
+figure
+plot(linspace(1,length(accuracyParam.aucHistory),length(accuracyParam.aucHistory)),accuracyParam.aucHistory)
+hold on
+plot(linspace(1,length(accuracyParam.aucHistory),length(accuracyParam.aucHistory)),modelZero.aucHistory)
+plot(linspace(1,length(accuracyParam.aucHistory),length(accuracyParam.aucHistory)),modelZero.aucHistory2)
+legend('normal','zero1', 'zero2')
 
 % 
 % figure
 % plot(x, distanceParam.med); title('med');
 % 
- figure
- plot(x, distanceParam.std); title('std');
+ %figure
+ %plot(x, distanceParam.std); title('std');
