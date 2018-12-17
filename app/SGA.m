@@ -22,7 +22,7 @@ function [grammar, distanceParam, yParam, hyperparameters, populationHistory, le
 tic
 
 %initialization
-[teachingSentences] = loadSentences(teachingSentencesFile);
+load('teachingSentences.mat');
 [grammar] = loadGrammar(grammarFile);
 [population] = initPopulation (grammar, hyperparameters.n);
 [yParam, distanceParam, populationHistory, bestSolutionHistory] = preallocate (grammar,hyperparameters); %subfunction preallocate
@@ -65,7 +65,7 @@ while t<=hyperparameters.tk
     bestIndex = find(points==max(points), 1); %Indeks najlepszego osobnika
     bestSolutionHistory(:,t) = population(bestIndex,:);
     
-    t=t+1
+    t=t+1;
 end
 time = toc;
 
@@ -80,6 +80,7 @@ end
 function [yParam, distanceParam, populationHistory, bestSolutionHistory] = preallocate (grammar,hyperparameters)
 tk=hyperparameters.tk;
 n=hyperparameters.n;
+
 
 yParam.min=zeros(tk+1,1);
 yParam.max=zeros(tk+1,1);
@@ -111,11 +112,12 @@ saved=0;
 while ~saved
     filename=strcat('results/',grammarFile,'/n',mat2str(hyperparameters.n),'mp',mat2str(hyperparameters.mutationProb),'ms',mat2str(hyperparameters.mutationScale),'COp',mat2str(hyperparameters.CrossingOverProb),'tk',mat2str(hyperparameters.tk),'testNr',mat2str(tn),'.mat');
     if exist(filename, 'file') == 2
-        tn=tn+1;
+        tn=tn+1
     else
+        zapis=1
         save(filename,...
             'grammar', 'distanceParam', 'yParam', 'hyperparameters', 'populationHistory', 'lethalMutations', 'time', 'teachingSentencesFile', 'grammarFile', 'teachingSentences', 'bestSolutionHistory', 'accuracyParam');
-        saved=1;
+        saved=1
     end
 end
 

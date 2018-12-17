@@ -1,10 +1,8 @@
 function [accuracyParam] = testTeachingAccuracy (positiveTestFile, negativeTestFile, bestSolutionHistory, tk, grammar)
 
-positiveSentences = loadSentences(positiveTestFile);
-negativeSentences = loadSentences(negativeTestFile);
-accuracyParam.testSentences = [positiveSentences,negativeSentences];
+load('testSentences.mat');
 
-accuracyParam.condiction = [ones(1,length(positiveSentences)),zeros(1,length(negativeSentences))];
+%accuracyParam.condiction = [ones(1,length(positiveSentences)),zeros(1,length(negativeSentences))];
 
 accuracyParam.testSentencesPoints = ones((tk/10)+1, length(accuracyParam.testSentences));
 

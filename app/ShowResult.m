@@ -25,5 +25,5 @@ plot(linspace(1,length(accuracyParam.aucHistory),length(accuracyParam.aucHistory
 % figure
 % plot(x, distanceParam.med); title('med');
 % 
-% figure
-% plot(x, distanceParam.std); title('std');
+ figure
+ plot(x, distanceParam.std); title('std');
