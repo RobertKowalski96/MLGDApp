@@ -20,14 +20,14 @@
 % time - czas uczenia
 function [grammar, distanceParam, yParam, hyperparameters, populationHistory, lethalMutations, time, bestSolutionHistory, accuracyParam, modelZero] = SGA (hyperparameters, teachingSentencesFile, grammarFile, positiveTestFile, negativeTestFile, modelZero)
 tic
-
+rng('shuffle')
 %initialization
 load('teachingSentences.mat');
 [grammar] = loadGrammar(grammarFile);
 [population] = initPopulation (grammar, hyperparameters.n);
 [yParam, distanceParam, populationHistory, bestSolutionHistory, time] = preallocate (grammar,hyperparameters); %subfunction preallocate
 lethalMutations=0;
-
+%TEST
 
 %ocena P0
 [points] = firstQualityCheck (population, grammar, teachingSentences);

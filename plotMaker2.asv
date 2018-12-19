@@ -1,0 +1,6 @@
+x=linspace(1,hyperparameters.tk+1,hyperparameters.tk+1);
+
+
+
+figure
+plot(x, distanceParam.mean); title('mean');

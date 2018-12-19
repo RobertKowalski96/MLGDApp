@@ -1,4 +1,4 @@
-function [prob] = CYK_Probabilistic(grammar, input, rulesProb)
+function [prob,P] = CYK_Probabilistic(grammar, input, rulesProb)
 
 %Initialize
 P=zeros(length(input),length(input),length(grammar.nonTerminals));

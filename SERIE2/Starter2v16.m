@@ -2,15 +2,15 @@ clc; clear all, close all;
 
 %parameters:
 hyperparameters.n=160; %osobniki
-hyperparameters.tk=1000; %end cycle number
+hyperparameters.tk=3000; %end cycle number
 hyperparameters.mutationProb=0.001;
 hyperparameters.mutationScale=0.5;
-hyperparameters.CrossingOverProb=0.5;
+hyperparameters.CrossingOverProb=0.1;
 modelZero.terminals = ['a', 'b', 'c'];
 modelZero.terminalsFreq = [1, 1, 1];
 
 teachingSentencesFile = 'minimumTeachingSampleGrammar1.txt';
-grammarFile = 'testGrammar1Min.txt';
+grammarFile = 'testGrammar1Covering3.txt';
 positiveTestFile = 'positiveTestGrammar1.txt';
 negativeTestFile = 'negativeTestGrammar1.txt';
 
