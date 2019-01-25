@@ -1,8 +1,0 @@
-$->TC
-$->$C
-T->AV
-T->AB
-V->TB
-A->a
-B->b
-C->c
